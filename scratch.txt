@@ -6,3 +6,7 @@ Find all restaurants with:
 --None of the scores set to -1
 
 db.restaurants.find($ne)
+
+
+db.restaurants.find( {grades: {$exists: true}, $where:'this.grades.length > 0' })
+
