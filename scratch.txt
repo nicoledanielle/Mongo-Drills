@@ -1,0 +1,8 @@
+Find all restaurants with: 
+--cuisine set to something other than "Not Listed/Not Applicable"
+--borough set to something other than "Missing"
+--At least one grade
+--None of the grades set to "Not Yet Graded
+--None of the scores set to -1
+
+db.restaurants.find($ne)
