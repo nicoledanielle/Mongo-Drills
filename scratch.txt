@@ -37,7 +37,7 @@ db.restaurants.distinct('cuisine')
 
 Find the first five restaurants with the lowest positive score in one of their gradings.
 
-db.restaurants.find()
+db.restaurants.find().sort()
 
 
 Find the restaurants which have only been graded A.
