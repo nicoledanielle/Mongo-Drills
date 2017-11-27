@@ -2,7 +2,7 @@ Find all restaurants with:
 --cuisine set to something other than "Not Listed/Not Applicable"
 --borough set to something other than "Missing"
 --At least one grade
---None of the grades set to "Not Yet Graded
+--None of the grades set to "Not Yet Graded"
 --None of the scores set to -1
 
 db.restaurants.find($ne)
@@ -10,3 +10,5 @@ db.restaurants.find($ne)
 
 db.restaurants.find( {grades: {$exists: true}, $where:'this.grades.length > 0' })
 
+db.restaurants.find( {grades: {$elemMatch: { grade: { $ne: 'Not Yet Graded' }}, 
+{ score: { $ne: -1 }}}})
