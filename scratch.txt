@@ -26,3 +26,20 @@ db.restaurants.find(
 {grades: {$elemMatch: { grade: { $ne: 'Not Yet Graded' }, 
 score: { $ne: -1 }}}}
 ]})
+
+
+How many restaurants did it return? 3946, so 4 restaurants were filtered out
+
+Ignoring your filter... create a list of all cuisines offered with no duplicates:
+
+db.restaurants.distinct('cuisine')
+
+
+Find the first five restaurants with the lowest positive score in one of their gradings.
+
+db.restaurants.find()
+
+
+Find the restaurants which have only been graded A.
+
+db.restaurants.find({'grades.grade': {$nin: ['B', 'C', 'Not Yet Graded']}})
