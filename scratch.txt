@@ -5,10 +5,24 @@ Find all restaurants with:
 --None of the grades set to "Not Yet Graded"
 --None of the scores set to -1
 
-db.restaurants.find($ne)
 
+db.restaurants.find({cuisine: {$ne: 'Not listed/Not Applicable'}})
 
-db.restaurants.find( {grades: {$exists: true}, $where:'this.grades.length > 0' })
+db.restaurants.find({borough: {$ne: 'Missing'}})
 
-db.restaurants.find( {grades: {$elemMatch: { grade: { $ne: 'Not Yet Graded' }}, 
-{ score: { $ne: -1 }}}})
+db.restaurants.find({'grades.grade': {$exists:true}})
+
+db.restaurants.find({grades: {$elemMatch: { grade: { $ne: 'Not Yet Graded' }, 
+score: { $ne: -1 }}}})
+    
+
+--linking them all together:
+
+db.restaurants.find(
+{$and: [
+{cuisine: {$ne: 'Not listed/Not Applicable'}},
+{borough: {$ne: 'Missing'}},
+{'grades.grade': {$exists:true}},
+{grades: {$elemMatch: { grade: { $ne: 'Not Yet Graded' }, 
+score: { $ne: -1 }}}}
+]})
